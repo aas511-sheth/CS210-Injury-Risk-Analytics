@@ -32,6 +32,11 @@ def extract_features():
     """)
     
     df = pd.DataFrame(cur.fetchall())
+
+	
+    for col in ["training_load_hours", "prev_load"]:
+    	if col in df.columns:
+        	df[col] = df[col].astype(float)
     cur.close()
     conn.close()
     
@@ -40,7 +45,8 @@ def extract_features():
     df['workload_ratio'] = df['workload_ratio'].clip(0.5, 2.0)
     
     # Fill NaNs
-    df.fillna(df.mean(), inplace=True)
+    num_cols = df.select_dtypes(include="number").columns
+    df[num_cols] = df[num_cols].fillna(df[num_cols].mean())
     
     # Drop unnecessary columns
     df = df[['player_id', 'player_name', 'position', 'training_load_hours', 'workload_ratio', 
@@ -49,8 +55,12 @@ def extract_features():
     print(f"Extracted {len(df)} feature records")
     print(f"Injury rate: {df['injury_occurred'].mean()*100:.1f}%")
     
-    df.to_csv('data/features_for_ml.csv', index=False)
-    return df
+    import os
+
+    project_root = os.path.dirname(os.path.dirname(__file__))  # one level up from code/
+    output_path = os.path.join(project_root, "data", "features_for_ml.csv")
+    df.to_csv(output_path, index=False)
+    print(f"Saved features to: {output_path}")
 
 if __name__ == "__main__":
     extract_features()
