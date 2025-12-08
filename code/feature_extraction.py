@@ -32,7 +32,6 @@ def extract_features():
     """)
     
     df = pd.DataFrame(cur.fetchall())
-
 	
     for col in ["training_load_hours", "prev_load"]:
     	if col in df.columns:
