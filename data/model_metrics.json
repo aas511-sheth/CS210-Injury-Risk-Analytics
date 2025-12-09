@@ -1,29 +1,29 @@
 {
   "train_accuracy": 0.9855769230769231,
-  "test_accuracy": 0.8125,
-  "roc_auc": 0.528844634107792,
-  "cv_mean": 0.4890871347280418,
-  "cv_std": 0.06142085902247817,
+  "test_accuracy": 0.7884615384615384,
+  "roc_auc": 0.5342485760186944,
+  "cv_mean": 0.5017103577844764,
+  "cv_std": 0.04807694117963482,
   "feature_importance": [
     {
       "feature": "workload_ratio",
-      "importance": 0.24845489884888453
+      "importance": 0.2379205397899132
     },
     {
       "feature": "training_load_hours",
-      "importance": 0.22428091577291512
+      "importance": 0.21835967815026194
     },
     {
       "feature": "fatigue_level",
-      "importance": 0.19068129688512633
+      "importance": 0.1932646591501199
     },
     {
       "feature": "recovery_score",
-      "importance": 0.17634170691190404
+      "importance": 0.17871342999501233
     },
     {
       "feature": "intensity_avg",
-      "importance": 0.16024118158116987
+      "importance": 0.17174169291469257
     }
   ]
 }
